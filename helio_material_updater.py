@@ -1,7 +1,7 @@
 """查询 Helio API 所有材料并按品牌分类输出全部字段。"""
 
 import os
-from datetime import datetime
+from datetime import datetime, timezone, timedelta
 
 import requests
 from rich.console import Console
@@ -293,7 +293,7 @@ def save_markdown(summary, materials, path):
     lines = [
         f"# Helio API 材料列表",
         f"",
-        f"> 生成时间: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}",
+        f"> 生成时间: {datetime.now(timezone(timedelta(hours=8))).strftime('%Y-%m-%d %H:%M:%S')} (北京时间)",
         f">",
         f"> 总数: {summary['count']} | 桌面级: {summary['desktopMaterials']} | LFAM: {summary['lfamMaterials']} | 实验性: {summary['experimentalMaterials']} | 品牌: {summary['brands']}",
         f">",
